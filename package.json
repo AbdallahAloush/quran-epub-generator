@@ -1,0 +1,20 @@
+{
+  "name": "quran-epub-generator",
+  "version": "0.1.0",
+  "description": "Use data fetched from King Fahd Quran Complex to produce a Mushaf in epub format",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha"
+  },
+  "keywords": [
+    "javascript",
+    "quran",
+    "epub",
+    "king",
+    "fahd",
+    "complex"
+  ],
+  "author": "Abdallah Aloush",
+  "license": "ISC"
+}
