@@ -25,14 +25,15 @@ class Sura {
 
     suraXHTML(){
         const title = "Quran";
-        const outputFile = this.outputFile("html");
+        const outputFile = this.suraOutputFile("html");
         const content = this.suraHTMLBody();
 
         const html = createHtml({
             title: title,
             lang: "ar",
             dir: "rtl",
-            body: content
+            body: content,
+            head: this.suraHTMLHead()
         });
 
         fs.writeFileSync (outputFile, html);
@@ -44,12 +45,16 @@ class Sura {
     }
 
     suraOutputFile(extension) {
-        const outputFile = `book/content/${this.suraNumber}-${this.suraNameEN}.${extension}`;
+        const outputFile = `book/${this.suraNumber}.${extension}`;
         return outputFile;
     }
 
     suraHTMLHead(){
-
+        return `<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=2.3, user-scalable=no" />
+        <link rel="stylesheet" type="text/css" href="style/epub.css" />
+    </head>`
     }
 
 

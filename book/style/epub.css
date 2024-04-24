@@ -1,0 +1,12 @@
+@font-face {
+    font-family: hafs;
+    src: url(../fonts/uthmanic_hafs.ttf);
+}
+
+body {
+    font-family: hafs;
+    text-align: center;
+}
+p {
+    text-align: justify;
+}

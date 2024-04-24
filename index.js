@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Sura = require('./sura.js')
+const Book = require('./book.js')
 // const rob3 = '۞';
 
 const filePath = 'content/hafs.json';
@@ -44,4 +45,7 @@ function generateSuras(ayas) {
 
 
 generateSuras(ayas).forEach(sura => sura.suraXHTML());
+const newBook = new Book('/book', `book/images/cover.jpg`);
+newBook.generateBook();
+
 
