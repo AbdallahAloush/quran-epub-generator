@@ -1,69 +1,47 @@
 const fs = require('fs');
-const rob3 = '۞';
-const bismallah = "بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ";
-const sura_name_symbol = '؁';
-const sura = "سُورَةُ"
-const filePath = 'hafs.json';
-const firstAya = 1;
+const Sura = require('./sura.js')
+// const rob3 = '۞';
 
-const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+const filePath = 'content/hafs.json';
 
-let sura_name = data.filter(aya => aya.aya_no === 1).reduce((sura_name, aya) => {
-    sura_name[aya.sura_name_en] = aya.sura_name_ar;
-    return sura_name
-}, {});
+const ayas = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 
-data.forEach(aya => {
-    if (aya.page === 3){
-        fs.writeFileSync("page3.txt", `${aya.aya_text} `, { flag: 'a' });
-    }
-});
-fs.writeFileSync('sura_name.json',JSON.stringify(sura_name))
-
-
-function print_sura_logo(suraNames) {
-    for(let x in suraNames){
-        const print = `${sura} ${suraNames[x]} ${sura_name_symbol} \n`
-        fs.writeFileSync('sura_name.txt', print, { flag: 'a' })
-    }
-
-}
 // {
-//     "id" : 1363,
-//     "jozz" : 11,
-//     "page" : 207,
-//     "sura_no" : 9,
-//     "sura_name_en" : "At-Taubah",
-//     "sura_name_ar" : "التوبَة",
-//     "line_start" : 12,
-//     "line_end" : 14,
-//     "aya_no" : 128,
-//     "aya_text" : "لَقَدۡ جَآءَكُمۡ رَسُولٞ مِّنۡ أَنفُسِكُمۡ عَزِيزٌ عَلَيۡهِ مَا عَنِتُّمۡ حَرِيصٌ عَلَيۡكُم بِٱلۡمُؤۡمِنِينَ رَءُوفٞ رَّحِيمٞ ﱿ",
-//     "aya_text_emlaey" : "لقد جاءكم رسول من أنفسكم عزيز عليه ما عنتم حريص عليكم بالمؤمنين رءوف رحيم"
+//     "id" : 1,
+//     "jozz" : 1,
+//     "page" : 1,
+//     "sura_no" : 1,
+//     "sura_name_en" : "Al-Fātiḥah",
+//     "sura_name_ar" : "الفَاتِحة",
+//     "line_start" : 2,
+//     "line_end" : 2,
+//     "aya_no" : 1,
+//     "aya_text" : "بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ ﰀ",
+//     "aya_text_emlaey" : "بسم الله الرحمن الرحيم"
 // }
-function generateText(jsonData) {
-    let surahs = {}
-    jsonData.forEach(aya => {
-        if(aya.aya_no === firstAya){
-            let add = `# ${sura} ${aya.sura_name_ar} ${sura_name_symbol}\n## ${bismallah}\n`;
-            add += `${aya.aya_text}`;
-            // const output_file = `output/${aya.sura_name_en}.md`;
-            surahs[aya.sura_name_en] = add
-        } else {
-            surahs[aya.sura_name_en] += aya.aya_text;
+
+function generateSuras(ayas) {
+    const ayasCount = ayas.length;
+
+    let suras = [];
+    let suraIndex = 0;
+    let ayaIndex = 0;
+
+    while (suraIndex < ayasCount) {
+        const firstAya = ayas[ayaIndex]
+        let newSura = new Sura(firstAya.sura_name_en, firstAya.sura_name_ar, firstAya.sura_no);
+        suras[suraIndex] = newSura;
+
+        while (ayaIndex < ayasCount && ayas[ayaIndex].sura_name_en === newSura.suraNameEN ) {
+            newSura.addAya(ayas[ayaIndex].aya_text);
+            ayaIndex++;
         }
-    });
-    return surahs
-}
-print_sura_logo(sura_name);
-
-function generateFiles(surahs) {
-    for (surah in surahs) {
-        const outputFile = `output/markdown/${surah}.md`
-        fs.writeFileSync(outputFile, surahs[surah]);
+        suraIndex = ayaIndex;
     }
+
+    return suras;
 }
 
 
-console.log("done");
-generateFiles(generateText(data));
+generateSuras(ayas).forEach(sura => sura.suraXHTML());
+
