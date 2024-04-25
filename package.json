@@ -9,8 +9,6 @@
     "clean": "rm output/markdown/*.md output/html/*.html"
   },
   "dependencies": {
-    "create-html": "^4.1.0",
-    "@eit6609/epub-creator": "^1.0.1"
   },
   "keywords": [
     "javascript",
