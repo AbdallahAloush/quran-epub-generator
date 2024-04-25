@@ -21,7 +21,13 @@ class Sura {
     }
 
     suraHTMLBody(){
-        return `<h1>${Sura.sura} ${this.suraNameAR} ${Sura.suraSymbol}</h1><h2>${Sura.bismallah}</h2><p>${this.ayas}</p>`;
+        const suraName = `<h1>${Sura.sura} ${this.suraNameAR} ${Sura.suraSymbol}</h1>`;
+        let basmallah = `<h2>${Sura.bismallah}</h2>`;
+        if (this.suraNumber === 1){
+            basmallah = "";
+        }
+
+        return `<div dir="rtl">${suraName}${basmallah}${this.suraAsHtmlParagraph()}</div>`;
     }
 }
 
