@@ -4,3 +4,4 @@ planning.md
 *.txt
 /output
 /node_modules
+*.epub
