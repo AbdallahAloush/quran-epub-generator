@@ -1,5 +1,4 @@
-const { EPUBCreator } = require('@eit6609/epub-creator');
-
+// const Epub = require("epub-gen");
 class Book{
     constructor(contentPath, coverPath) {
         this.contentPath = contentPath;
@@ -55,6 +54,8 @@ class Book{
         const creator = new EPUBCreator(option);
         creator.create('quran.epub').catch((error) => console.log(error));
     }
+
+    //TODO: loop on suras to generate the content
 }
 
 module.exports = Book;

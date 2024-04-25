@@ -3,7 +3,7 @@ const Sura = require('./sura.js')
 const Book = require('./book.js')
 // const rob3 = '۞';
 
-const filePath = 'content/hafs.json';
+const filePath = 'data/hafs.json';
 
 const ayas = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 
@@ -20,7 +20,6 @@ const ayas = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 //     "aya_text" : "بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ ﰀ",
 //     "aya_text_emlaey" : "بسم الله الرحمن الرحيم"
 // }
-
 function generateSuras(ayas) {
     const ayasCount = ayas.length;
 
@@ -31,10 +30,15 @@ function generateSuras(ayas) {
     while (suraIndex < ayasCount) {
         const firstAya = ayas[ayaIndex]
         let newSura = new Sura(firstAya.sura_name_en, firstAya.sura_name_ar, firstAya.sura_no);
-        suras[suraIndex] = newSura;
+        suras.push(newSura);
 
         while (ayaIndex < ayasCount && ayas[ayaIndex].sura_name_en === newSura.suraNameEN ) {
-            newSura.addAya(ayas[ayaIndex].aya_text);
+            delete ayas[ayaIndex].aya_text_emlaey;
+            delete ayas[ayaIndex].sura_no;
+            delete ayas[ayaIndex].sura_name_ar;
+            delete ayas[ayaIndex].sura_name_en;
+            delete ayas[ayaIndex].id;
+            newSura.addAya(ayas[ayaIndex]);
             ayaIndex++;
         }
         suraIndex = ayaIndex;
@@ -42,10 +46,4 @@ function generateSuras(ayas) {
 
     return suras;
 }
-
-
-generateSuras(ayas).forEach(sura => sura.suraXHTML());
-const newBook = new Book('book', `book/images/cover.jpg`);
-newBook.generateBook();
-
 
