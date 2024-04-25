@@ -1,6 +1,7 @@
 const fs = require('fs');
 const Sura = require('./sura.js')
-const Book = require('./book.js')
+const Book = require('./book.js');
+const { getRandomValues } = require('crypto');
 // const rob3 = '۞';
 
 const filePath = 'data/hafs.json';
@@ -47,3 +48,6 @@ function generateSuras(ayas) {
     return suras;
 }
 
+const suras = generateSuras(ayas);
+const newBook = new Book(suras);
+newBook.produceEpub();

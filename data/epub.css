@@ -1,8 +1,8 @@
 @font-face {
     font-family: hafs;
-    src: url(../fonts/uthmanic_hafs.ttf);
+    font-weight: 800;
+    src : url("./fonts/uthmanic_hafs.ttf");
 }
-
 body {
     font-family: hafs;
     text-align: center;
