@@ -45,7 +45,7 @@ class Book{
             contentDir: this.contentPath,
             spine,
             toc,
-            // cover: this.coverPath,
+            cover: this.coverPath,
             simpleMetadata: {
                 author: 'Quran',
                 title: 'Quran',

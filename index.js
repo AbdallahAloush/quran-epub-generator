@@ -45,7 +45,7 @@ function generateSuras(ayas) {
 
 
 generateSuras(ayas).forEach(sura => sura.suraXHTML());
-const newBook = new Book('/book', `book/images/cover.jpg`);
+const newBook = new Book('book', `book/images/cover.jpg`);
 newBook.generateBook();
 
 
