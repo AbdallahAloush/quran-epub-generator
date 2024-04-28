@@ -1,5 +1,8 @@
 const assert = require("assert");
 const Suras = require("../suras.js");
+const Book = require("../book.js");
+const path = require("path");
+const fs = require("fs")
 
 const newSuras = new Suras();
 const suras = newSuras.generateSuras();
@@ -45,6 +48,26 @@ describe("Sura", () => {
             assert.strictEqual(annasAyas[1].aya_no, 2);
             assert.strictEqual(annasAyas[5].aya_no, 6);
 
+        });
+    });
+});
+
+describe("Book", () => {
+    const newBook = new Book(suras, "data");
+    describe("#generatePathsMap", () => {
+        it("fonts property should be an array", () => {
+            const fontsCount = fs.readdirSync('data/fonts').length;
+            assert.strictEqual(newBook.paths.fonts.length, fontsCount);
+        });
+
+        it("Should generate correct file paths", () => {
+            const cssPath = path.resolve('data/styles/epub.css');
+            const opfPath = path.resolve('data/templates/content.opf.ejs');
+            const coverPath = path.resolve('data/cover.jpg');
+
+            assert.strictEqual(newBook.paths.opfTemplate, opfPath);
+            assert.strictEqual(newBook.paths.css, cssPath);
+            assert.strictEqual(newBook.paths.cover, coverPath);
         });
     });
 });

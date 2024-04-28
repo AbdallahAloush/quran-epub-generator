@@ -2,12 +2,40 @@ const Epub = require("epub-gen");
 const fs = require("fs");
 const path = require("path");
 class Book {
-    constructor(suras) {
+    constructor(suras, resourcesRelativePath = 'data') {
         this.suras = suras;
+        this.paths = this.generatePathsMap(resourcesRelativePath);
     }
 
-    generateOptions(){
-        const css = fs.readFileSync("data/epub.css", "utf-8");
+    generatePathsMap(resourcesRelativePath, outputFileName = 'quran.epub') {
+        const allFiles = fs.readdirSync(resourcesRelativePath, { recursive: true });
+        let paths = {};
+        let fonts = [];
+
+        allFiles.forEach(filename => {
+            if (filename.includes('cover')) {
+                paths.cover = path.resolve(resourcesRelativePath, filename);
+            } else if (filename.includes('fonts/')) {
+                fonts.push(path.resolve(resourcesRelativePath, filename));
+            } else if (filename.includes('opf.ejs')) {
+                paths.opfTemplate = path.resolve(resourcesRelativePath, filename);
+            } else if (filename.includes('ncx.ejs')) {
+                paths.ncxTemplate = path.resolve(resourcesRelativePath, filename);
+            } else if (filename.includes('xhtml.ejs')) {
+                paths.htmlTocTemplate = path.resolve(resourcesRelativePath, filename);
+            } else if (filename.includes('.css')) {
+                paths.css = path.resolve(resourcesRelativePath, filename);
+            }
+        });
+
+        paths.output = path.resolve(outputFileName);
+        paths.fonts = fonts;
+
+        return paths;
+    }
+
+    generateOptions() {
+        const css = fs.readFileSync(this.paths.css, "utf-8");
         const content = this.suras.map(sura => {
             return {
                 title: `${sura.suraNumber}-${sura.suraNameEN}`,
@@ -15,22 +43,24 @@ class Book {
                 filename: `${sura.suraNumber}-${sura.suraNameEN}`
             }
         });
-        let option = {
+        return {
             title: "Quran",
             author: "Allah",
-            cover: "/home/abdallahaloush/Documents/quran-epub-generator/data/cover.jpg",
+            cover: this.paths.cover,
             lang: "ar",
             css: css,
             content: content,
-            fonts: ['/home/abdallahaloush/Documents/quran-epub-generator/data/uthmanic_hafs.ttf'],
+            fonts: this.paths.fonts,
             appendChapterTitles: false,
-            tocTitle: "سُورَةُ"
-        }
-        return option;
+            tocTitle: "سُورَةُ",
+            customOpfTemplatePath: this.opfTemplate,
+            customNcxTocTemplatePath: this.ncxTemplate,
+            customHtmlTocTemplatePath: this.htmlTocTemplate
+        };
     }
 
-    produceEpub() {
-        new Epub(this.generateOptions(), "/home/abdallahaloush/Documents/quran-epub-generator/quran.epub");
+    produceEpub(options = this.generateOptions()) {
+        new Epub(options, this.paths.output);
     }
 }
 

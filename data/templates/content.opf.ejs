@@ -42,11 +42,11 @@
         <% if(locals.cover) { %>
         <item id="image_cover" href="cover.<%= _coverExtension %>" media-type="<%= _coverMediaType %>" />
         <% } %>
-        
+
         <% images.forEach(function(image, index){ %>
         <item id="image_<%= index %>" href="images/<%= image.id %>.<%= image.extension %>" media-type="<%= image.mediaType %>" />
         <% }) %>
-        
+
         <% content.forEach(function(content, index){ %>
         <item id="content_<%= index %>_<%= content.id %>" href="<%= content.href %>" media-type="application/xhtml+xml" />
         <% }) %>
@@ -56,7 +56,7 @@
         <%})%>
     </manifest>
 
-    <spine toc="ncx">
+    <spine toc="ncx" page-progression-direction="rtl">
         <% content.forEach(function(content, index){ %>
             <% if(content.beforeToc && !content.excludeFromToc){ %>
                 <itemref idref="content_<%= index %>_<%= content.id %>"/>

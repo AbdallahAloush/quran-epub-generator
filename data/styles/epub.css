@@ -10,3 +10,7 @@ body {
 p {
     text-align: justify;
 }
+
+#toc {
+    text-align: left;
+}
