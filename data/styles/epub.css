@@ -3,6 +3,17 @@
     font-weight: 800;
     src : url("./fonts/uthmanic_hafs.ttf");
 }
+@font-face {
+    font-family: sura-name;
+    font-weight: 900;
+    src: url("./fonts/surah_names.ttf");
+}
+@font-face {
+    font-family: bismillah;
+    font-weight: 300;
+    font-size: 30;
+    src: url("./fonts/basmalah.otf");
+}
 body {
     font-family: hafs;
     text-align: center;
@@ -10,7 +21,9 @@ body {
 p {
     text-align: justify;
 }
-
+h2 {
+    font-family: bismillah;
+}
 #toc {
     text-align: left;
 }

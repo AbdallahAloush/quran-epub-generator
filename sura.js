@@ -1,5 +1,5 @@
 class Sura {
-    static bismallah = "بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ";
+    static bismallah = '\uF04C';
     static suraSymbol = '؁';
     static sura = "سُورَةُ";
 
@@ -15,13 +15,16 @@ class Sura {
     }
 
     suraAsHtmlParagraph() {
-        let p = this.ayas.reduce((ayasP, aya) => ayasP += `${aya.aya_text} `, "<p>");
+        let p = this.ayas.reduce((ayasP, aya) =>{
+            ayasP += `${aya.aya_text} `;
+            return ayasP;
+        } , "<p>");
         p+="</p>";
         return p
     }
 
     suraHTMLBody(){
-        const suraName = `<h1>${Sura.sura} ${this.suraNameAR} ${Sura.suraSymbol}</h1>`;
+        const suraName = `<h1>${Sura.sura} ${this.suraNameAR}</h1>`;
         let basmallah = `<h2>${Sura.bismallah}</h2>`;
         if (this.suraNumber === 1){
             basmallah = "";
