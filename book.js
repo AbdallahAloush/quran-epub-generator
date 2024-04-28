@@ -1,5 +1,6 @@
 const Epub = require("epub-gen");
-const fs = require("fs")
+const fs = require("fs");
+const path = require("path");
 class Book {
     constructor(suras) {
         this.suras = suras;
@@ -22,7 +23,8 @@ class Book {
             css: css,
             content: content,
             fonts: ['/home/abdallahaloush/Documents/quran-epub-generator/data/uthmanic_hafs.ttf'],
-            appendChapterTitles: false
+            appendChapterTitles: false,
+            tocTitle: "سُورَةُ"
         }
         return option;
     }

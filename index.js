@@ -1,12 +1,8 @@
 const fs = require('fs');
 const Sura = require('./sura.js')
 const Book = require('./book.js');
-const { getRandomValues } = require('crypto');
-// const rob3 = '۞';
 
-const filePath = 'data/hafs.json';
-
-const ayas = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+const ayas = JSON.parse(fs.readFileSync('data/hafs.json', 'utf-8'));
 
 // {
 //     "id" : 1,
