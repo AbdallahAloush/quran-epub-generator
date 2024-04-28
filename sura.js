@@ -15,7 +15,7 @@ class Sura {
     }
 
     suraAsHtmlParagraph() {
-        let p = this.ayas.reduce((ayasP, aya)=>ayasP+=`${aya.aya_text} `, "<p>");
+        let p = this.ayas.reduce((ayasP, aya) => ayasP += `${aya.aya_text} `, "<p>");
         p+="</p>";
         return p
     }
