@@ -4,7 +4,7 @@
          unique-identifier="BookId"
          xmlns:dc="http://purl.org/dc/elements/1.1/"
          xmlns:dcterms="http://purl.org/dc/terms/"
-         xml:lang="en"
+         xml:lang="ar"
          xmlns:media="http://www.idpf.org/epub/vocab/overlays/#"
          prefix="ibooks: http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0/">
 
@@ -52,7 +52,7 @@
         <% }) %>
 
         <% fonts.forEach(function(font, index){%>
-        <item id="font_<%= index%>" href="fonts/<%= font %>" media-type="application/x-font-ttf" />
+        <item id="font_<%= index%>" href="fonts/<%= font %>" media-type="application/x-font-truetype" />
         <%})%>
     </manifest>
 

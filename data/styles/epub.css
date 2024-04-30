@@ -14,16 +14,32 @@
     font-size: 30;
     src: url("./fonts/basmalah.otf");
 }
+@font-face {
+    font-family: symbols;
+    font-weight: 200;
+    src: url("./fonts/symbols.otf");
+}
 body {
     font-family: hafs;
     text-align: center;
 }
 p {
     text-align: justify;
+    text-align-last: center;
+    text-justify: kashida;
+    font-size: 5vh;
+    line-height: 8vh;
 }
 h2 {
-    font-family: bismillah;
+    font-family: symbols;
+    text-align: center;
+    font-size: 5vh;
 }
+#table {
+    font-family: symbols;
+    text-align: left;
+}
+
 #toc {
     text-align: left;
 }

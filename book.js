@@ -28,7 +28,7 @@ class Book {
             }
         });
 
-        paths.output = path.resolve(outputFileName);
+        paths.output = path.resolve("output/",outputFileName);
         paths.fonts = fonts;
 
         return paths;
@@ -52,10 +52,11 @@ class Book {
             content: content,
             fonts: this.paths.fonts,
             appendChapterTitles: false,
-            tocTitle: "سُورَةُ",
-            customOpfTemplatePath: this.opfTemplate,
-            customNcxTocTemplatePath: this.ncxTemplate,
-            customHtmlTocTemplatePath: this.htmlTocTemplate
+            tocTitle: "Z",
+            // identifier: 'urn:uuid:12345678-1234-5678-1234-567812345678'
+            customOpfTemplatePath: this.paths.opfTemplate,
+            customNcxTocTemplatePath: this.paths.ncxTemplate,
+            customHtmlTocTemplatePath: this.paths.htmlTocTemplate
         };
     }
 

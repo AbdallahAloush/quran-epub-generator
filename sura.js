@@ -1,6 +1,5 @@
 class Sura {
-    static bismallah = '\uF04C';
-    static suraSymbol = '؁';
+    static bismallah = '#';
     static sura = "سُورَةُ";
 
     constructor (suraNameEN, suraNameAR, suraNumber){
