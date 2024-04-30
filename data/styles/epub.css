@@ -1,45 +1,49 @@
 @font-face {
-    font-family: hafs;
+    font-family: "kfgqpc_hafs_uthmanic _script";
     font-weight: 800;
     src : url("./fonts/uthmanic_hafs.ttf");
 }
 @font-face {
-    font-family: sura-name;
+    font-family: icomoon;
     font-weight: 900;
     src: url("./fonts/surah_names.ttf");
 }
 @font-face {
-    font-family: bismillah;
+    font-family: "KFGQPC Basmalah";
     font-weight: 300;
     font-size: 30;
     src: url("./fonts/basmalah.otf");
 }
 @font-face {
-    font-family: symbols;
+    font-family: "KFGQPC Arabic Symbols 01";
     font-weight: 200;
     src: url("./fonts/symbols.otf");
 }
 body {
-    font-family: hafs;
+    font-family: "kfgqpc_hafs_uthmanic _script";
     text-align: center;
 }
 p {
     text-align: justify;
     text-align-last: center;
     text-justify: kashida;
-    font-size: 5vh;
-    line-height: 8vh;
+    font-size: 1em;
+    line-height: 1.6;
 }
 h2 {
-    font-family: symbols;
+    font-family: "KFGQPC Arabic Symbols 01";
     text-align: center;
-    font-size: 5vh;
+    font-size: 1em;
 }
-#table {
-    font-family: symbols;
+.table {
+    font-family: "KFGQPC Arabic Symbols 01";
     text-align: left;
 }
 
 #toc {
     text-align: left;
+}
+
+.span {
+    display: block;
 }

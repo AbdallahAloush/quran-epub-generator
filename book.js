@@ -48,12 +48,12 @@ class Book {
             author: "Allah",
             cover: this.paths.cover,
             lang: "ar",
-            css: css,
+            // css: css,
             content: content,
             fonts: this.paths.fonts,
             appendChapterTitles: false,
             tocTitle: "Z",
-            // identifier: 'urn:uuid:12345678-1234-5678-1234-567812345678'
+            identifier: 'urn:uuid:00000000-0000-0000-0000-000000000000',
             customOpfTemplatePath: this.paths.opfTemplate,
             customNcxTocTemplatePath: this.paths.ncxTemplate,
             customHtmlTocTemplatePath: this.paths.htmlTocTemplate

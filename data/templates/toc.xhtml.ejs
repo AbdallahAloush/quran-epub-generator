@@ -7,26 +7,17 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-<h1 class="h1"><%= tocTitle %></h1>
+<h1 class="tocTitle table"><%= tocTitle %></h1>
 <nav id="toc" epub:type="toc">
     <ol>
-        <% content.forEach(function(content, index){ %>
-            <% if(!content.excludeFromToc && content.beforeToc){ %>
-                <li class="table-of-content">
-                    <a href="<%= content.href %>"><%= (content.title || "Chapter "+ (1+index)) %><% if(content.author.length){ %> - <small class="toc-author"><%= content.author.join(",") %></small><% }%><% if(content.url){ %><span class="toc-link"><%= content.url %></span><% }%></a>
-                </li>
-            <% } %>
-        <% }) %>
         <li class="table-of-content" >
-            <a href="toc.xhtml"id="table">- <%= tocTitle %> -</a>
+            <a href="toc.xhtml" class="table"><%= tocTitle %></a>
         </li>
-        <% content.forEach(function(content, index){ %>
-            <% if(!content.excludeFromToc && !content.beforeToc){ %>
-                <li class="table-of-content">
-                    <a href="<%= content.href %>"><%= (content.title || "Chapter "+ (1+index)) %><% if(content.author.length){ %> - <small class="toc-author"><%= content.author.join(",") %></small><% }%><% if(content.url){ %><span class="toc-link"><%= content.url %></span><% }%></a>
-                </li>
-            <% } %>
-        <% }) %>
+<% content.forEach(function(content, index){ %>
+        <li class="table-of-content">
+            <a href="<%= content.href %>"><%= content.title %></a>
+        </li>
+<% }) %>
     </ol>
 </nav>
 
